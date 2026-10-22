@@ -1,0 +1,59 @@
+{
+  "skill_name": "video-director",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "new video in inputs/coffee-tips-2, same presenter as last time, make it a super engaging reel like part 1 but with more motion",
+      "expected_output": "Scans the workspace, resolves memory for brand example-brand (talking_head_edu, instagram_reels), analyzes footage + GPU transcript, writes edit-plan.yaml that applies prior feedback rules (more motion, zoom into graphics, layered SFX, safe zones), lints it, stops at checkpoint A with a cost line for any fal clips.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "the captions are too big and the zooms make me dizzy, otherwise good",
+      "expected_output": "Logs feedback verbatim against the last delivered job/version, lowers caption size and punch-in params at brand or profile scope via director_memory.py, weakens the motion-density rule only as far as needed, re-plans and re-renders as a new version, explains what was learned.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "i dropped a product screen recording and our logo in inputs/app-launch, make a 30s tiktok promo, english, upbeat",
+      "expected_output": "Identifies footage vs logo vs (missing) details, picks platform tiktok + profile product_promo or tutorial_screen, plans beat-synced edit with UI callouts and zoom-ins on the recording, routes build through /hyperframes (product-launch-video or general-video), asks before paid generation.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "make it calmer and less busy, it feels like every other reel",
+      "expected_output": "Lowers the motion and density dials at brand scope via director_memory.py param set, redraws the direction with a stated reason (taste.py draw --exclude), writes a new idea sentence that passes the competitor test, removes tells flagged by plan_lint, and re-plans as a new version.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "new reel in inputs/launch-teaser, our brand kit is in inputs/launch-teaser/brand (logo, fonts, guidelines.pdf)",
+      "expected_output": "Detects the kit via workspace.py scan, reads the guidelines PDF, runs brand.py import with --set for what the PDF says, reports contrast issues, uses brand palette/fonts in the taste sheet, places the logo per brand.logo.placement, and shows the applied brand at checkpoint A.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "in the part where I show the app on my screen, keep me small in the corner talking, and use a split only for the chart",
+      "expected_output": "Plans a layouts timeline with pip_speaker (bubble 260-420 px, bottom-left, inside the safe zone) over the screen recording and split for the chart, eased handoffs >= 0.6 s, captions above the bubble, passes plan_lint layout checks, and logs the preference as feedback.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "for Sara's videos the music should be louder",
+      "expected_output": "Resolves Sara to her brand via client/aliases, logs feedback with --brand and applies=client (the note names the client, so no question needed), stores the number in brands.<sara>.profile_overrides.music_bed_db_under_voice, and does not change other clients.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "the animations feel repetitive",
+      "expected_output": "Runs motion_pick.py audit on the plan, replaces repeated moves with ranked alternatives per beat (different families), keeps moves near the motion dial, asks whether 'more variety' is generic or client-specific before writing a rule, and re-plans.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "make a promo for https://example.com, use their branding and show the signup flow",
+      "expected_output": "Uses /playwright-cli to read the site's logo/colours/fonts (brand.py import with --url and --set), records the signup flow at 9:16 with a cursor, converts to mp4, plans it as a pip_speaker or cutaway with cursor-demo motion, and flags inferred brand values at checkpoint A.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+# Video directions library - read by scripts/taste.py (do not read it whole; use `taste.py draw`).
+# A direction is a way of composing a whole video: its signature move, transition grammar, caption
+# and graphics language, sound palette and the tells it must avoid. The agent never invents a look
+# from scratch; it is dealt three that fit the job and picks the one that carries the subject's idea.
+#
+# dials: energy (cut pace), motion (camera + overlay movement), density (things on screen at once), 1-10.
+# fits: profiles it suits.  tones: quiet | bold | warm | technical | playful | luxury | editorial.
+# layouts: preferred speaker layouts, most typical first (references/layouts.md); content still decides per beat.
+# needs: assets it depends on (footage | speech | data | product_ui | photos | music | logo).
+version: 1
+directions:
+  - id: documentary-calm
+    name: Documentary calm
+    fits: [talking_head_story, talking_head_edu, generic]
+    tones: [quiet, warm, editorial]
+    needs: [footage, speech]
+    dials: {energy: 3, motion: 3, density: 2}
+    signature_move: one slow push-in per section that lands exactly on the key sentence
+    layouts: [full_speaker, cutaway, speaker_overlay]
+    transitions: hard cuts on breaths; one 0.8 s cross-dissolve between chapters
+    captions: sentence-case lines of 4-7 words, no word highlight, low under the chin
+    graphics: lower-third name + one plain-text chapter card per section, nothing else
+    type: one humanist serif or grotesk, two sizes only
+    sound: room tone kept, soft piano/strings bed, no whooshes, one swell into the ending
+    palette: footage colours, one warm accent for text backing
+    avoid: [sfx on every cut, word-pop captions, emoji, zoom pulses]
+
+  - id: kinetic-explainer
+    name: Kinetic explainer
+    fits: [explainer_faceless, talking_head_edu, product_promo]
+    tones: [bold, playful, technical]
+    needs: [speech]
+    dials: {energy: 8, motion: 8, density: 6}
+    signature_move: every key noun becomes type that builds, then the camera flies through it into the next scene
+    layouts: [text_full, speaker_cutout, cutaway, speaker_overlay]
+    transitions: type-driven match cuts (a letter or shape carries into the next frame), whip only at section changes
+    captions: 2-3 word chunks, one highlighted word per line maximum
+    graphics: kinetic typography, icon-free diagrams drawn as lines that build, counters for real numbers only
+    type: one heavy display grotesk + one text face
+    sound: pulse-driven bed, pop on text in, riser->hit at section changes, ticks for counters
+    palette: one flat ground, one ink, one accent; full-field colour changes between sections
+    avoid: [stock b-roll, light leaks, gradient text, invented statistics]
+
+  - id: split-teacher
+    name: Split-screen teacher
+    fits: [talking_head_edu, tutorial_screen]
+    tones: [technical, warm, quiet]
+    needs: [footage, speech]
+    dials: {energy: 5, motion: 5, density: 5}
+    signature_move: the frame splits (graphic top, speaker bottom, full width) whenever an idea needs a picture, then heals
+    layouts: [split, full_speaker, speaker_overlay]
+    transitions: eased 0.6-0.9 s split in/out; hard cuts elsewhere
+    captions: under the chin in every layout, 2-4 word chunks, 1 highlight in 10 words
+    graphics: data that builds one element per spoken beat, then a slow zoom on the key part with a plain takeaway
+    type: one geometric sans, labels >= 32 px
+    sound: light bed 6-8 dB under voice, soft whoosh on split, chime on checks
+    palette: brand colours in fields behind graphics, footage graded natural
+    avoid: [boxed speaker cards, graphics over the face, fast wipes]
+
+  - id: creator-punch
+    name: Creator punch
+    fits: [talking_head_story, talking_head_edu, product_promo]
+    tones: [bold, playful]
+    needs: [footage, speech]
+    dials: {energy: 9, motion: 7, density: 5}
+    signature_move: jump-cut rhythm with punch-ins on the punchline of each sentence (1.15 / 1.35 alternating)
+    layouts: [full_speaker, speaker_overlay, cutaway, pip_speaker]
+    transitions: hard jump cuts, one zoom-through per section, nothing longer than 0.3 s except the outro
+    captions: big 1-3 word bursts, centre-low, one colour accent word per sentence
+    graphics: reaction stickers drawn from the subject (its objects, not emoji), one callout arrow per claim
+    type: one condensed display face
+    sound: tight bed on the beat, impact on punch-ins capped at caps.sfx_per_10s, record scratch never
+    palette: high-contrast ink + one accent; graded punchy but skin-safe
+    avoid: [emoji, glitch, the same sfx 3x in a row, zoom on every sentence]
+
+  - id: editorial-magazine
+    name: Editorial magazine
+    fits: [talking_head_story, product_promo, explainer_faceless, generic]
+    tones: [editorial, luxury, quiet]
+    needs: [photos]
+    dials: {energy: 4, motion: 4, density: 4}
+    signature_move: the frame is laid out like a magazine spread; photos slide in on a grid and the headline sets itself in large type
+    layouts: [split, speaker_cutout, cutaway, text_full]
+    transitions: grid slides (panels push each other), 0.7 s eased; no dissolves
+    captions: sentence case, left-aligned to the grid edge
+    graphics: pull quotes, folio numbers as real dates/places from the subject, large crops of real photos
+    type: one high-contrast serif for display + one grotesk, tight tracking
+    sound: minimal - one bed, page-turn texture on panel pushes, silence before the last line
+    palette: paper ground, black ink, one spot colour taken from the subject's own material
+    avoid: [neon, glass panels, drop shadows, stock icons]
+
+  - id: data-desk
+    name: Data desk
+    fits: [talking_head_edu, explainer_faceless]
+    tones: [technical, bold]
+    needs: [data, speech]
+    dials: {energy: 6, motion: 6, density: 7}
+    signature_move: one chart per claim that draws itself, then the camera dives into the point that proves it
+    layouts: [split, pip_speaker, speaker_overlay]
+    transitions: zoom-through from chart detail into the next scene, 0.6-0.8 s
+    captions: compact, above a fixed lower data rail
+    graphics: real numbers only, axis labels >= 32 px, one takeaway sentence held >= 1.5 s per chart
+    type: one sans with tabular figures
+    sound: soft ticks while bars grow, low hit on the takeaway, quiet bed
+    palette: dark or light ground, one data colour, one highlight colour
+    avoid: [3D charts, decorative gridlines, invented numbers, pie charts with > 4 slices]
+
+  - id: field-notes
+    name: Field notes
+    fits: [talking_head_story, tutorial_screen, generic]
+    tones: [warm, playful, quiet]
+    needs: [footage]
+    dials: {energy: 5, motion: 4, density: 4}
+    signature_move: hand-drawn marks (circles, arrows, underlines) draw on top of the footage exactly where the speaker points
+    layouts: [speaker_overlay, full_speaker, cutaway]
+    transitions: paper-tear or pen-stroke wipe between sections only; hard cuts otherwise
+    captions: marker-style backing, sentence case
+    graphics: annotations drawn as SVG strokes, taped-on photos of the subject's real things
+    type: one handwritten accent face for annotations, one clean sans for captions
+    sound: pencil scratch on draws, acoustic bed, paper rustle on transitions
+    palette: footage + one marker colour
+    avoid: [perfect vector icons, glossy UI, whoosh]
+
+  - id: product-stage
+    name: Product stage
+    fits: [product_promo, tutorial_screen]
+    tones: [luxury, technical, bold]
+    needs: [product_ui]
+    dials: {energy: 7, motion: 7, density: 4}
+    signature_move: the real interface floats on a flat stage and the camera moves through it to the feature being named
+    layouts: [pip_speaker, cutaway, text_full]
+    transitions: camera flies from one UI region to the next; masks reveal, never wipes
+    captions: kinetic titles naming the benefit, 3-5 words
+    graphics: cropped real UI fragments, cursor highlight, one stat count-up per real number
+    type: the product's own typeface or one neutral grotesk
+    sound: beat-synced bed, soft clicks on UI actions, logo sting at the end
+    palette: the product's own colours; ground a step away from the UI background
+    avoid: [fake dashboards, device mockups with glare, gradient blobs]
+
+  - id: cinematic-story
+    name: Cinematic story
+    fits: [talking_head_story, music_montage, product_promo]
+    tones: [luxury, quiet, editorial]
+    needs: [footage, music]
+    dials: {energy: 4, motion: 6, density: 2}
+    signature_move: letterboxed widescreen moments that open to full frame on the emotional turn
+    layouts: [full_speaker, cutaway, text_full]
+    transitions: match cuts on shape or movement, J/L audio cuts, one long dissolve
+    captions: small, elegant, low; titles as chapter cards
+    graphics: almost none - one title, one closing line
+    type: one refined serif, wide tracking only on the title card
+    sound: score-led, swells timed to cuts, natural sound kept under the score
+    palette: filmic grade, controlled highlights, skin protected
+    avoid: [stickers, word-pop captions, fast punch-ins]
+
+  - id: retro-broadcast
+    name: Retro broadcast
+    fits: [explainer_faceless, music_montage, product_promo]
+    tones: [playful, bold]
+    needs: []
+    dials: {energy: 7, motion: 6, density: 6}
+    signature_move: the video behaves like a TV programme - an ident open, a ticker, and a 'we interrupt' cut at the twist
+    layouts: [pip_speaker, speaker_overlay, text_full, cutaway]
+    transitions: channel-change cut (one frame of noise), ident wipes; at most one per section
+    captions: lower-third bar in the broadcast style
+    graphics: idents, tickers, programme cards built from the subject's own name and dates
+    type: one period-appropriate display face + one sans
+    sound: jingle sting, tape hiss bed, button beeps
+    palette: three flat broadcast colours, no gradients
+    avoid: [overused CRT scanlines on the whole video, VHS glitch every cut]
+
+  - id: minimal-type
+    name: Minimal type
+    fits: [explainer_faceless, talking_head_edu, music_montage, generic]
+    tones: [quiet, technical, editorial]
+    needs: []
+    dials: {energy: 5, motion: 3, density: 1}
+    signature_move: one sentence at a time, set very large, and the next word replaces the last in place
+    layouts: [text_full, full_speaker]
+    transitions: cut on the word; the whole field changes colour at section changes
+    captions: the type is the caption
+    graphics: none besides type and full-field colour
+    type: one family, two sizes, left-aligned
+    sound: voice-led, a single tone or pulse bed, silence as punctuation
+    palette: one ground per section, one ink
+    avoid: [icons, stickers, b-roll, shadows]
+
+  - id: whiteboard-builder
+    name: Whiteboard builder
+    fits: [talking_head_edu, explainer_faceless, tutorial_screen]
+    tones: [warm, technical, playful]
+    needs: [speech]
+    dials: {energy: 5, motion: 5, density: 6}
+    signature_move: a single diagram grows across the whole video, one piece per idea; the camera pulls back at the end to reveal it complete
+    layouts: [pip_speaker, split, speaker_cutout]
+    transitions: camera pans across the growing board instead of cuts
+    captions: under the speaker or under the board, never over it
+    graphics: one continuous diagram built from the subject's real parts and steps
+    type: one rounded sans for labels, one marker accent
+    sound: marker squeak on draws (quiet), light bed, chime when the board is complete
+    palette: board ground, ink, one accent per branch (max 3)
+    avoid: [disconnected one-off graphics, icon grids]

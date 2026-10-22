@@ -1,0 +1,137 @@
+# Motion library - read by scripts/motion_pick.py (do not read whole; use the script).
+# A move is one animation idea for one beat. Each points at real recipes: `hf:` = a rule or blueprint in
+# /hyperframes-animation (rules/<name>.md, blueprints/<name>.md), `mr:` = references/motion-recipes.md,
+# `registry:` = search terms for /hyperframes-registry (search before hand-building).
+#
+# beats (what the content does): hook, claim, keyword, number, list, steps, comparison, trend, process,
+#   cause_effect, quote, question, name, place, concrete_noun, punchline, emotion, warning, tip,
+#   section_change, demo, reveal, cta, ending
+# family: text | emphasis | data | diagram | camera | overlay | broll | transition | ui | ending
+# level: motion intensity it belongs to (1 calm .. 10 wild); picked near the job's motion dial.
+# dur: [min, max] seconds of the move itself (the hold after it is separate).
+version: 1
+moves:
+  # ---------- text ----------
+  - {id: word-stack-build, family: text, beats: [hook, claim, punchline], level: 5, dur: [0.6, 1.4],
+     what: "words land one by one on the spoken beat, stacked, the key word larger", ease: power3.out,
+     sfx: pop-soft, recipes: [hf:kinetic-beat-slam, hf:discrete-text-sequence, mr:kinetic-title]}
+  - {id: mask-line-reveal, family: text, beats: [claim, quote, section_change, name], level: 3, dur: [0.6, 1.0],
+     what: "each line slides up out of a mask, calm and editorial", ease: power2.out,
+     sfx: none, recipes: [hf:waterfall-entry, mr:kinetic-title]}
+  - {id: typewriter-line, family: text, beats: [question, quote, tip, demo], level: 3, dur: [0.8, 2.0],
+     what: "line types out with a caret, stops on the last word", ease: none,
+     sfx: typing, recipes: [bp:typewriter-reveal]}
+  - {id: scale-slam-title, family: text, beats: [hook, section_change, punchline], level: 8, dur: [0.3, 0.6],
+     what: "title scales from 1.4 to 1 with a hit, one per section at most", ease: expo.out,
+     sfx: impact-bass-1, recipes: [hf:kinetic-beat-slam, mr:section-slam]}
+  - {id: depth-layer-title, family: text, beats: [hook, section_change, reveal], level: 7, dur: [0.8, 1.4],
+     what: "title in 3 depth layers that separate as the camera pushes", ease: power3.inOut,
+     sfx: whoosh-soft, recipes: [hf:3d-text-depth-layers]}
+  - {id: ticker-swap, family: text, beats: [list, number, keyword], level: 6, dur: [0.4, 0.7],
+     what: "one slot, words roll vertically through it on each beat", ease: back.out(1.4),
+     sfx: tick, recipes: [hf:vertical-spring-ticker]}
+  # ---------- emphasis ----------
+  - {id: marker-underline, family: emphasis, beats: [keyword, claim, warning], level: 3, dur: [0.4, 0.7],
+     what: "a hand-drawn underline or circle draws under the spoken word", ease: power2.inOut,
+     sfx: marker, recipes: [hf:css-marker-patterns, hf:svg-path-draw]}
+  - {id: keyword-glow, family: emphasis, beats: [keyword, punchline], level: 5, dur: [0.3, 0.6],
+     what: "the caption word lights up in the accent exactly when spoken", ease: power2.out,
+     sfx: none, recipes: [hf:asr-keyword-glow, mr:caption-pop]}
+  - {id: spring-pop-sticker, family: emphasis, beats: [punchline, emotion, tip], level: 7, dur: [0.4, 0.7],
+     what: "a sticker drawn from the subject's real object springs in beside the head, then tilts out", ease: back.out(1.7),
+     sfx: pop, recipes: [hf:spring-pop-entrance, hf:press-release-spring]}
+  - {id: warning-shake, family: emphasis, beats: [warning], level: 6, dur: [0.3, 0.5],
+     what: "a red-free warning tag nudges twice (no full-frame shake)", ease: sine.inOut,
+     sfx: thud-soft, recipes: [hf:nudge-curve]}
+  # ---------- data ----------
+  - {id: countup-number, family: data, beats: [number], level: 5, dur: [0.8, 1.6],
+     what: "the real number counts up and scales slightly as it lands", ease: power2.out,
+     sfx: tick-roll, recipes: [hf:counting-dynamic-scale, bp:dataviz-countup]}
+  - {id: bars-build-zoom, family: data, beats: [comparison, trend, number], level: 6, dur: [2.0, 5.0],
+     what: "bars grow one per spoken beat, then the camera zooms into the winning bar with a takeaway", ease: power3.out,
+     sfx: rise-tick, recipes: [hf:stat-bars-and-fills, mr:data-build-zoom]}
+  - {id: line-draw-scrub, family: data, beats: [trend, cause_effect], level: 5, dur: [1.5, 4.0],
+     what: "a line chart draws left to right, a readout dot rides the line to the key point", ease: none,
+     sfx: soft-swell, recipes: [hf:chart-scrub-readout, hf:svg-path-draw, mr:data-build-zoom]}
+  - {id: split-compare, family: data, beats: [comparison], level: 5, dur: [1.0, 2.0],
+     what: "before/after halves slide in from opposite sides, the better side scales up", ease: power3.inOut,
+     sfx: whoosh-short, recipes: [bp:comparison-split]}
+  # ---------- diagram ----------
+  - {id: path-draw-diagram, family: diagram, beats: [process, cause_effect, steps], level: 4, dur: [1.5, 4.0],
+     what: "nodes appear on their spoken word and the connecting path draws between them", ease: power2.inOut,
+     sfx: marker, recipes: [hf:svg-path-draw, hf:svg-icon-enrichment]}
+  - {id: hub-constellation, family: diagram, beats: [list, process], level: 6, dur: [2.0, 4.0],
+     what: "a centre idea with satellites that pop out and link, one per item", ease: back.out(1.4),
+     sfx: pop-soft, recipes: [bp:constellation-hub, hf:center-outward-expansion]}
+  - {id: checklist-build, family: diagram, beats: [steps, list, tip], level: 4, dur: [1.0, 3.0],
+     what: "items enter one per beat, each gets a check as it is said", ease: power2.out,
+     sfx: chime, recipes: [hf:waterfall-entry, mr:card-entrance]}
+  - {id: card-morph, family: diagram, beats: [reveal, process], level: 6, dur: [0.8, 1.4],
+     what: "a small card morphs into the full explanation panel from where it sat", ease: power3.inOut,
+     sfx: whoosh-soft, recipes: [hf:card-morph-anchor, hf:anchored-layout-expand]}
+  # ---------- camera ----------
+  - {id: slow-drift, family: camera, beats: [emotion, quote, claim], level: 2, dur: [3.0, 8.0],
+     what: "barely visible push 1.00 to 1.04 across the sentence", ease: none,
+     sfx: none, recipes: [mr:camera-rig]}
+  - {id: punch-in-cut, family: camera, beats: [punchline, claim], level: 6, dur: [0.0, 0.2],
+     what: "cut to 1.15-1.35 on the punchline, back out on the next sentence", ease: none,
+     sfx: none, recipes: [mr:camera-rig]}
+  - {id: eased-push, family: camera, beats: [claim, warning, reveal], level: 4, dur: [0.8, 1.6],
+     what: "eased push into the face or the graphic detail that matters", ease: power2.inOut,
+     sfx: none, recipes: [mr:camera-rig, hf:coordinate-target-zoom]}
+  - {id: multi-phase-camera, family: camera, beats: [process, demo, reveal], level: 7, dur: [2.0, 6.0],
+     what: "camera travels between stations of one big canvas, settling on each spoken point", ease: power3.inOut,
+     sfx: whoosh-soft, recipes: [hf:multi-phase-camera, bp:spatial-pan-stations, bp:camera-journey]}
+  - {id: depth-focus-pull, family: camera, beats: [reveal, emotion], level: 4, dur: [0.8, 1.5],
+     what: "background blurs while the subject or graphic comes into focus", ease: power2.inOut,
+     sfx: none, recipes: [hf:depth-of-field-blur]}
+  # ---------- overlay ----------
+  - {id: lower-third-slide, family: overlay, beats: [name, place], level: 3, dur: [0.6, 1.0],
+     what: "name bar slides in from the safe edge, holds, slides out", ease: power3.out,
+     sfx: whoosh-short, recipes: [mr:card-entrance]}
+  - {id: callout-arrow, family: overlay, beats: [concrete_noun, demo, keyword], level: 4, dur: [0.4, 0.8],
+     what: "an arrow draws to the thing in frame and its label pops at the tip", ease: power2.out,
+     sfx: pop-soft, recipes: [hf:svg-path-draw, hf:ai-tracking-box]}
+  - {id: tracking-box, family: overlay, beats: [concrete_noun, demo], level: 5, dur: [0.6, 2.0],
+     what: "a box locks onto the object/hand in frame and follows it", ease: power2.out,
+     sfx: click-soft, recipes: [hf:ai-tracking-box]}
+  # ---------- broll ----------
+  - {id: ken-burns-still, family: broll, beats: [concrete_noun, place, emotion], level: 3, dur: [2.0, 5.0],
+     what: "photo with a slow push and slight pan toward its subject", ease: none,
+     sfx: none, recipes: [mr:card-entrance]}
+  - {id: parallax-cutout, family: broll, beats: [place, reveal], level: 6, dur: [2.0, 4.0],
+     what: "foreground and background of a still move at different speeds", ease: power1.inOut,
+     sfx: whoosh-soft, recipes: [hf:depth-scatter-assemble, hf:3d-page-scroll]}
+  - {id: ai-clip-cutaway, family: broll, beats: [concrete_noun, demo], level: 5, dur: [1.5, 4.0],
+     what: "short generated clip of the exact thing named, voice continues under it", ease: none,
+     sfx: none, recipes: [mr:ai-clip-cutaway]}
+  # ---------- ui (screen / web captures) ----------
+  - {id: cursor-demo, family: ui, beats: [demo, steps], level: 5, dur: [2.0, 8.0],
+     what: "recorded UI flow with an animated cursor; camera follows the cursor to each action", ease: power2.inOut,
+     sfx: click-soft, recipes: [bp:cursor-ui-demo, hf:camera-cursor-tracking, hf:cursor-click-ripple]}
+  - {id: device-showcase, family: ui, beats: [reveal, demo, hook], level: 6, dur: [2.0, 5.0],
+     what: "the real interface floats on a flat stage and turns to face the camera", ease: power3.inOut,
+     sfx: whoosh-soft, recipes: [bp:device-surface-showcase]}
+  # ---------- transitions ----------
+  - {id: hard-cut, family: transition, beats: [claim, punchline, section_change], level: 1, dur: [0.0, 0.0],
+     what: "a clean cut on a breath; the default transition", ease: none,
+     sfx: none, recipes: [mr:transition-grammar]}
+  - {id: eased-layout-morph, family: transition, beats: [section_change, reveal, comparison], level: 4, dur: [0.6, 0.9],
+     what: "layout changes (split, pip, full) by easing scale and clip together", ease: power3.inOut,
+     sfx: whoosh-soft, recipes: [mr:split-screen, hf:viewport-change]}
+  - {id: zoom-through, family: transition, beats: [section_change, reveal], level: 7, dur: [0.5, 0.8],
+     what: "camera dives into a detail that becomes the next scene", ease: expo.inOut,
+     sfx: whoosh-cinematic, recipes: [mr:whip-zoom-through, hf:scale-swap-transition]}
+  - {id: theme-crossfade, family: transition, beats: [section_change], level: 3, dur: [0.6, 1.0],
+     what: "the whole field colour changes to the next chapter's ground", ease: power2.inOut,
+     sfx: none, recipes: [hf:theme-crossfade-morph]}
+  # ---------- ending ----------
+  - {id: logo-lockup, family: ending, beats: [cta, ending], level: 5, dur: [1.0, 2.0],
+     what: "the brand logo assembles and locks up with the CTA line", ease: power3.out,
+     sfx: logo-sting, recipes: [bp:logo-assemble-lockup]}
+  - {id: cta-press, family: ending, beats: [cta], level: 5, dur: [0.8, 1.4],
+     what: "the CTA button presses itself (save / follow) with a spring", ease: back.out(1.6),
+     sfx: click-soft, recipes: [bp:cta-morph-press, hf:physics-press-reaction]}
+  - {id: loop-return, family: ending, beats: [ending], level: 3, dur: [0.6, 1.2],
+     what: "the last frame eases back into the exact first frame so autoplay loops", ease: power2.inOut,
+     sfx: none, recipes: [mr:photo-open-loop]}

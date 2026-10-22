@@ -1,0 +1,37 @@
+{
+  "name": "video-director-skill",
+  "version": "1.1.0",
+  "description": "Agent skill (Claude Code / Codex) that directs, edits and generates videos end to end with HyperFrames, decides the look with a taste engine, and learns from your feedback.",
+  "bin": {
+    "video-director-skill": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "claude-code",
+    "agent-skill",
+    "skills",
+    "video-editing",
+    "hyperframes",
+    "reels",
+    "tiktok",
+    "shorts",
+    "codex",
+    "brand-kit",
+    "playwright",
+    "animation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsmed31/video-director-skill.git"
+  },
+  "homepage": "https://github.com/rsmed31/video-director-skill#readme",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
